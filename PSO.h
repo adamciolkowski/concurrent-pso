@@ -28,7 +28,7 @@ private:
 
     std::vector<Particle> initializeSwarm(Bounds bounds);
 
-    Particle *randomParticle(int dimensions, const Bounds &bounds);
+    Particle randomParticle(int dimensions, const Bounds &bounds);
 
     static double randomInRange(double min, double max) {
         std::uniform_real_distribution<double> unif(min, max);
@@ -37,11 +37,11 @@ private:
         return unif(re);
     }
 
-    void updateBest(std::vector<Particle> particles);
+    void updateBest(const std::vector<Particle> &particles);
 
     bool isBestInSwarm(Particle particle);
 
-    void updateSwarm(std::vector<Particle> particles, Bounds bounds);
+    void updateSwarm(std::vector<Particle> &particles, Bounds bounds);
 };
 
 #endif //CONCURRENT_PSO_PSO_H
