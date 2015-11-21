@@ -22,5 +22,4 @@ private:
     std::vector<double> upper;
 };
 
-
 #endif //CONCURRENT_PSO_BOUNDS_H

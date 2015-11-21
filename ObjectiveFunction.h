@@ -6,7 +6,8 @@
 class ObjectiveFunction {
 
 public:
-    virtual int fitness(const std::vector<double> &position) const = 0;
+    virtual int numberOfVariables() const = 0;
+    virtual double fitness(const std::vector<double> &position) const = 0;
 };
 
 #endif //CONCURRENT_PSO_OBJECTIVEFUNCTION_H

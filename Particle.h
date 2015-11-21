@@ -11,22 +11,21 @@ class Particle {
 public:
     Particle(const std::vector<double> &position, const std::vector<double> &velocity);
 
+    void update(std::vector<double> bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params);
+
+    std::vector<double> getPosition() const {
+        return position;
+    };
 private:
     std::vector<double> position;
     std::vector<double> velocity;
     std::vector<double> bestPosition;
 
-    void update(std::vector<double> bestSwarmPosition, const Bounds &bounds, const ObjectiveFunction &function, const SwarmParams &params);
-
     void updateVelocity(const std::vector<double> &bestSwarmPosition, const SwarmParams &params);
 
     void updatePosition(const Bounds &bounds);
 
-    void updateBestPosition(const ObjectiveFunction &objectiveFunction) {
-        if(objectiveFunction.fitness(position) < objectiveFunction.fitness(bestPosition)) {
-            bestPosition = position;
-        }
-    }
+    void updateBestPosition(ObjectiveFunction *objectiveFunction);
 
     static double constrict(double value, double min, double max) {
         if (value < min)

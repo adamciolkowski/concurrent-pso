@@ -1,6 +1,7 @@
+#include <iostream>
 #include "Particle.h"
 
-void Particle::update(std::vector<double> bestSwarmPosition, const Bounds &bounds, const ObjectiveFunction &function, const SwarmParams &params) {
+void Particle::update(std::vector<double> bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params) {
     updateVelocity(bestSwarmPosition, params);
     updatePosition(bounds);
     updateBestPosition(function);
@@ -20,6 +21,13 @@ void Particle::updateVelocity(const std::vector<double> &bestSwarmPosition, cons
 
 void Particle::updatePosition(const Bounds &bounds) {
     for (int d = 0; d < position.size(); d++) {
-        position[d] = constrict(position[d] + velocity[d], bounds.lowerBound(d), bounds.upperBound(d));
+        double sum = position[d] + velocity[d];
+        position[d] = constrict(sum, bounds.lowerBound(d), bounds.upperBound(d));
+    }
+}
+
+void Particle::updateBestPosition(ObjectiveFunction *objectiveFunction) {
+    if(objectiveFunction->fitness(position) < objectiveFunction->fitness(bestPosition)) {
+        bestPosition = position;
     }
 }
