@@ -1,12 +1,11 @@
 #ifndef CONCURRENT_PSO_SIMPLEOBJECTTIVEFUNCTION_H
 #define CONCURRENT_PSO_SIMPLEOBJECTTIVEFUNCTION_H
 
+#include <math.h>
 #include "ObjectiveFunction.h"
 
 class RosenbrockFunction : public ObjectiveFunction {
 
-private:
-    int dimensions;
 public:
     RosenbrockFunction(int dimensions) :
             dimensions(dimensions) { }
@@ -22,6 +21,9 @@ public:
         }
         return f;
     }
+
+private:
+    int dimensions;
 };
 
 #endif //CONCURRENT_PSO_SIMPLEOBJECTTIVEFUNCTION_H

@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    SphereFunction *function = new SphereFunction();
+    ObjectiveFunction *function = new SphereFunction();
 
     std::vector<double> lower(2, -5);
     std::vector<double> upper(2, 5);
