@@ -38,7 +38,7 @@ void PSO::updateBest(const std::vector<Particle> &particles) {
     }
 }
 
-bool PSO::isBestInSwarm(Particle particle) {
+bool PSO::isBestInSwarm(const Particle &particle) const {
     return objectiveFunction->fitness(particle.getPosition()) < bestFitness;
 }
 

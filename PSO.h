@@ -39,7 +39,7 @@ private:
 
     void updateBest(const std::vector<Particle> &particles);
 
-    bool isBestInSwarm(Particle particle);
+    bool isBestInSwarm(const Particle &particle) const;
 
     void updateSwarm(std::vector<Particle> &particles, Bounds bounds);
 };

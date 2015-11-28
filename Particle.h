@@ -11,7 +11,7 @@ class Particle {
 public:
     Particle(const std::vector<double> &position, const std::vector<double> &velocity);
 
-    void update(std::vector<double> bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params);
+    void update(const std::vector<double> &bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params);
 
     std::vector<double> getPosition() const {
         return position;

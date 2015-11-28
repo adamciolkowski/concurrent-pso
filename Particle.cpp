@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Particle.h"
 
-void Particle::update(std::vector<double> bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params) {
+void Particle::update(const std::vector<double> &bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params) {
     updateVelocity(bestSwarmPosition, params);
     updatePosition(bounds);
     updateBestPosition(function);
