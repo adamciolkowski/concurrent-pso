@@ -30,6 +30,7 @@ Particle PSO::randomParticle(int dimensions, const Bounds &bounds) {
 }
 
 void PSO::updateBest(const std::vector<Particle> &particles) {
+    // TODO: use reduction?
     for (std::vector<Particle>::const_iterator it = particles.begin(); it != particles.end(); ++it) {
         if (isBestInSwarm(*it)) {
             bestPosition = it->getPosition();
@@ -43,7 +44,8 @@ bool PSO::isBestInSwarm(const Particle &particle) const {
 }
 
 void PSO::updateSwarm(std::vector<Particle> &particles, Bounds bounds) {
-    for (std::vector<Particle>::iterator it = particles.begin(); it != particles.end(); ++it) {
-        it->update(bestPosition, bounds, objectiveFunction, swarmParams);
+#pragma omp parallel for
+    for (int i = 0; i < particles.size(); ++i) {
+        particles[i].update(bestPosition, bounds, objectiveFunction, swarmParams);
     }
 }
