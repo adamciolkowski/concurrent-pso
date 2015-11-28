@@ -30,9 +30,10 @@ private:
 
     Particle randomParticle(int dimensions, const Bounds &bounds);
 
-    static double randomInRange(double min, double max) {
+    std::random_device rd;
+
+    double randomInRange(double min, double max) {
         std::uniform_real_distribution<double> unif(min, max);
-        std::random_device rd;
         std::default_random_engine re(rd());
         return unif(re);
     }
