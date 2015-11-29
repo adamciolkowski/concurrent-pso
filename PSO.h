@@ -42,7 +42,7 @@ private:
 
     bool isBestInSwarm(const Particle &particle) const;
 
-    void updateSwarm(std::vector<Particle> &particles, Bounds bounds);
+    void updateSwarm(std::vector<Particle> &particles, const Bounds &bounds);
 };
 
 #endif //CONCURRENT_PSO_PSO_H

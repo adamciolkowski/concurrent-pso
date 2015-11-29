@@ -43,7 +43,7 @@ bool PSO::isBestInSwarm(const Particle &particle) const {
     return objectiveFunction->fitness(particle.getPosition()) < bestFitness;
 }
 
-void PSO::updateSwarm(std::vector<Particle> &particles, Bounds bounds) {
+void PSO::updateSwarm(std::vector<Particle> &particles, const Bounds &bounds) {
 #pragma omp parallel for
     for (int i = 0; i < particles.size(); ++i) {
         particles[i].update(bestPosition, bounds, objectiveFunction, swarmParams);
