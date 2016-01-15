@@ -8,6 +8,7 @@ public:
 
     double getInertiaFactor() const;
     double getPersonalWeight() const;
+#pragma acc routine seq
     double getGlobalWeight() const;
 private:
     double inertiaFactor;
