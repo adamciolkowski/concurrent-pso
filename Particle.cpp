@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Particle.h"
 
-#pragma acc routine seq
 void Particle::update(const std::vector<double> &bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params) {
     updateVelocity(bestSwarmPosition, params);
     updatePosition(bounds);
@@ -12,7 +11,6 @@ Particle::Particle(const std::vector<double> &position, const std::vector<double
         position(position), velocity(velocity), bestPosition(position) {
 }
 
-#pragma acc routine seq
 void Particle::updateVelocity(const std::vector<double> &bestSwarmPosition, const SwarmParams &params) {
     for (int d = 0; d < velocity.size(); d++) {
         velocity[d] = params.getInertiaFactor() * velocity[d] +
@@ -21,7 +19,6 @@ void Particle::updateVelocity(const std::vector<double> &bestSwarmPosition, cons
     }
 }
 
-#pragma acc routine seq
 void Particle::updatePosition(const Bounds &bounds) {
     for (int d = 0; d < position.size(); d++) {
         double sum = position[d] + velocity[d];
@@ -29,7 +26,6 @@ void Particle::updatePosition(const Bounds &bounds) {
     }
 }
 
-#pragma acc routine seq
 void Particle::updateBestPosition(ObjectiveFunction *objectiveFunction) {
     if(objectiveFunction->fitness(position) < objectiveFunction->fitness(bestPosition)) {
         bestPosition = position;
