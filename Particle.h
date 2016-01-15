@@ -11,6 +11,7 @@ class Particle {
 public:
     Particle(const std::vector<double> &position, const std::vector<double> &velocity);
 
+#pragma acc routine seq
     void update(const std::vector<double> &bestSwarmPosition, const Bounds &bounds, ObjectiveFunction *function, const SwarmParams &params);
 
     std::vector<double> getPosition() const {
@@ -21,10 +22,13 @@ private:
     std::vector<double> velocity;
     std::vector<double> bestPosition;
 
+#pragma acc routine seq
     void updateVelocity(const std::vector<double> &bestSwarmPosition, const SwarmParams &params);
 
+#pragma acc routine seq
     void updatePosition(const Bounds &bounds);
 
+#pragma acc routine seq
     void updateBestPosition(ObjectiveFunction *objectiveFunction);
 
 #pragma acc routine seq
