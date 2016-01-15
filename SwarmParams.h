@@ -6,7 +6,9 @@ class SwarmParams {
 public:
     SwarmParams(double inertiaFactor, double personalWeight, double globalWeight);
 
+#pragma acc routine seq
     double getInertiaFactor() const;
+#pragma acc routine seq
     double getPersonalWeight() const;
 #pragma acc routine seq
     double getGlobalWeight() const;
