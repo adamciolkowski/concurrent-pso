@@ -17,7 +17,7 @@ public:
     double fitness(const std::vector<double> &x) const {
         double f = 0;
         for (int i = 0; i < x.size() - 1; i++) {
-            f += 100 * pow(x[i + 1] - pow(x[i], 2), 2) + pow(x[i] - 1, 2);
+            f += 100 * pow(x[i + 1] - pow(x[i], 2), 2) + pow(x[i]-1, 2);
         }
         return f;
     }
