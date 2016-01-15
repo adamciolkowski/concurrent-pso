@@ -1,0 +1,22 @@
+SERVER ANY ANY
+PACKAGE PGI2015-STARTER pgroupd 2016.0320 536891B64B5F \
+   COMPONENTS="pgi-hpf-lin64 pgi-f95-lin64 pgi-f77-lin64 \
+   pgi-cc-lin64 pgi-cpp-lin64 pgi-gpp-lin64 pgi-hpf-lin32 \
+   pgi-f95-lin32 pgi-f77-lin32 pgi-cc-lin32 pgi-cpp-lin32 \
+   pgi-gpp-lin32 pgi-f95-win64 pgi-f77-win64 pgi-cc-win64 \
+   pgi-cpp-win64 pgi-gpp-win64 pgi-f95-win32 pgi-f77-win32 \
+   pgi-cc-win32 pgi-cpp-win32 pgi-gpp-win32 pgi-f95-osx64 \
+   pgi-f77-osx64 pgi-cc-osx64 pgi-cpp-osx64 pgi-gpp-osx64 \
+   pgi-f95-osx32 pgi-f77-osx32 pgi-cc-osx32 pgi-cpp-osx32 \
+   pgi-gpp-osx32 pgi-prof-lin64 pgi-prof-lin32 pgi-prof-win64 \
+   pgi-prof-win32 pgi-prof-osx64 pgi-prof-osx32 pgi-dbg-lin64 \
+   pgi-dbg-lin32 pgi-dbg-win64 pgi-dbg-win32 pgi-dbg-osx64 \
+   pgi-dbg-osx32 pgi-pvf" OPTIONS=SUITE SIGN="0051 6B7E 78DC 0EFE \
+   1BA2 CF74 19F9 23A2 F624 47C9 2A2D 99BF 3814 B18C EAC8 0257 \
+   C261 5F4D 7B5A 8E4D C05A C5EA AD90 ACFB 27A7 DD98 F963 3BAB \
+   F7CF 953D"
+FEATURE PGI2015-STARTER pgroupd 2016.0320 20-mar-2016 uncounted \
+   6B15227DDE48 VENDOR_STRING=STARTER:16:cdk:accel HOSTID=DEMO \
+   SUITE_DUP_GROUP=UH TS_OK SIGN="1A21 117B B727 C189 0731 FD3F \
+   F0F4 D030 D5DD 58D5 173F 82E2 B8B4 8AFD ABD3 07CE B2E4 6C1E \
+   E303 6AB5 BFCB 8DE2 E565 0D61 A312 611F F278 EC35 6C64 6E3B"
