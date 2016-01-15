@@ -27,6 +27,7 @@ private:
 
     void updateBestPosition(ObjectiveFunction *objectiveFunction);
 
+#pragma acc routine seq
     static double constrict(double value, double min, double max) {
         if (value < min)
             return min;
