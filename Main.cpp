@@ -1,6 +1,7 @@
 #include <iostream>
-#include <random>
+#include <stdlib.h>
 #include <string.h>
+#include <cmath>
 
 #define SWARM_SIZE 1000
 #define ITERATIONS 10000
@@ -21,12 +22,9 @@ struct Particle {
     double bestPosition[DIMENSIONS];
 };
 
-random_device rd;
-
 double randomInRange(double min, double max) {
-    uniform_real_distribution<double> unif(min, max);
-    default_random_engine re(rd());
-    return unif(re);
+    double f = (double)rand() / RAND_MAX;
+    return min + f * (max - min);
 }
 
 void printArray(const double array[], int length) {
@@ -54,6 +52,10 @@ double fitness(const double x[]) {
 }
 
 int main(int argc, char *argv[]) {
+    time_t seconds;
+    time(&seconds);
+    srand((unsigned int) seconds);
+
     clock_t start = clock();
 
     Particle particles[SWARM_SIZE];
