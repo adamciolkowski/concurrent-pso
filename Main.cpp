@@ -94,6 +94,11 @@ int main(int argc, char *argv[]) {
             for (int k = 0; k < DIMENSIONS; ++k) {
                 p.position[k] = p.position[k] * p.velocity[k];
             }
+            double f = fitness(particles[j].position);
+            if(f < fitness(particles[j].bestPosition)) {
+                memcpy(particles[j].bestPosition, particles[j].position, sizeof(double) * DIMENSIONS);
+                bestFitness = f;
+            }
         }
 
         for (int j = 0; j < SWARM_SIZE; ++j) {
