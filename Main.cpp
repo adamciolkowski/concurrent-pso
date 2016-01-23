@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdlib.h>
-#include <cmath>
 
 #define SWARM_SIZE 1000
 #define ITERATIONS 10000
@@ -51,7 +50,10 @@ static double constrict(double value, double min, double max) {
 double fitness(const double x[]) {
     double f = 0;
     for (int i = 0; i < DIMENSIONS - 1; i++) {
-        f += 100 * pow(x[i + 1] - pow(x[i], 2), 2) + pow(x[i]-1, 2);
+        double a = x[i] * x[i];
+        double b = x[i + 1] - a;
+        double c = x[i] - 1;
+        f += 100 * (b * b) + c * c;
     }
     return f;
 }
