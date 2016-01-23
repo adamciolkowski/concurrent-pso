@@ -93,13 +93,12 @@ int main(int argc, char *argv[]) {
         for (int j = 0; j < SWARM_SIZE; ++j) {
             Particle &p = particles[j];
             for (int k = 0; k < DIMENSIONS; ++k) {
-                double newPos = INERTIA_FACTOR * p.velocity[k] +
+                p.velocity[k] = INERTIA_FACTOR * p.velocity[k] +
                                 (p.bestPosition[k] - p.position[k]) * LOCAL_WEIGHT +
                                 (bestSwarmPosition[k] - p.position[k]) * GLOBAL_WEIGHT;
-                p.velocity[k] = constrict(newPos, MIN_BOUND, MAX_BOUND);
             }
             for (int k = 0; k < DIMENSIONS; ++k) {
-                p.position[k] = p.position[k] * p.velocity[k];
+                p.position[k] = constrict(p.position[k] * p.velocity[k], MIN_BOUND, MAX_BOUND);
             }
             double f = fitness(p.position);
             if(f < fitness(p.bestPosition)) {
