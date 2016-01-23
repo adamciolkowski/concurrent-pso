@@ -102,7 +102,6 @@ int main(int argc, char *argv[]) {
             double f = fitness(particles[j].position);
             if(f < fitness(particles[j].bestPosition)) {
                 memcpy2(particles[j].bestPosition, particles[j].position, sizeof(double) * DIMENSIONS);
-                bestFitness = f;
             }
         }
 
