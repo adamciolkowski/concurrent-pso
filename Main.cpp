@@ -91,18 +91,17 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < ITERATIONS; ++i) {
         for (int j = 0; j < SWARM_SIZE; ++j) {
-            Particle &p = particles[j];
             for (int k = 0; k < DIMENSIONS; ++k) {
-                p.velocity[k] = INERTIA_FACTOR * p.velocity[k] +
-                                (p.bestPosition[k] - p.position[k]) * LOCAL_WEIGHT +
-                                (bestSwarmPosition[k] - p.position[k]) * GLOBAL_WEIGHT;
+                particles[j].velocity[k] = INERTIA_FACTOR * particles[j].velocity[k] +
+                                           (particles[j].bestPosition[k] - particles[j].position[k]) * LOCAL_WEIGHT +
+                                           (bestSwarmPosition[k] - particles[j].position[k]) * GLOBAL_WEIGHT;
             }
             for (int k = 0; k < DIMENSIONS; ++k) {
-                p.position[k] = constrict(p.position[k] * p.velocity[k], MIN_BOUND, MAX_BOUND);
+                particles[j].position[k] = constrict(particles[j].position[k] * particles[j].velocity[k], MIN_BOUND, MAX_BOUND);
             }
-            double f = fitness(p.position);
-            if(f < fitness(p.bestPosition)) {
-                memcpy2(p.bestPosition, p.position, sizeof(double) * DIMENSIONS);
+            double f = fitness(particles[j].position);
+            if(f < fitness(particles[j].bestPosition)) {
+                memcpy2(particles[j].bestPosition, particles[j].position, sizeof(double) * DIMENSIONS);
                 bestFitness = f;
             }
         }
