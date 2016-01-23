@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <cmath>
+#include <openacc.h>
 
 #define SWARM_SIZE 1000
 #define ITERATIONS 10000
@@ -94,9 +95,9 @@ int main(int argc, char *argv[]) {
             for (int k = 0; k < DIMENSIONS; ++k) {
                 p.position[k] = p.position[k] * p.velocity[k];
             }
-            double f = fitness(particles[j].position);
-            if(f < fitness(particles[j].bestPosition)) {
-                memcpy(particles[j].bestPosition, particles[j].position, sizeof(double) * DIMENSIONS);
+            double f = fitness(p.position);
+            if(f < fitness(p.bestPosition)) {
+                memcpy(p.bestPosition, p.position, sizeof(double) * DIMENSIONS);
                 bestFitness = f;
             }
         }
