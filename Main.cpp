@@ -1,8 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include <string.h>
 #include <cmath>
-#include <openacc.h>
 
 #define SWARM_SIZE 1000
 #define ITERATIONS 10000
@@ -22,6 +20,12 @@ struct Particle {
     double velocity[DIMENSIONS];
     double bestPosition[DIMENSIONS];
 };
+
+void memcpy2(double a[], double b[], int length) {
+    for (int i = 0; i < length; ++i) {
+        a[i] = b[i];
+    }
+}
 
 double randomInRange(double min, double max) {
     double f = (double)rand() / RAND_MAX;
@@ -69,7 +73,7 @@ int main(int argc, char *argv[]) {
             p.velocity[j] = 0.0;
         }
         for (int j = 0; j < DIMENSIONS; ++j) {
-            memcpy(p.bestPosition, p.position, sizeof(double) * DIMENSIONS);
+            memcpy2(p.bestPosition, p.position, sizeof(double) * DIMENSIONS);
         }
         particles[i] = p;
     }
@@ -78,7 +82,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < SWARM_SIZE; ++i) {
         double f = fitness(particles[i].position);
         if(i == 0 || f < bestFitness) {
-            memcpy(bestSwarmPosition, particles[i].position, sizeof(double) * DIMENSIONS);
+            memcpy2(bestSwarmPosition, particles[i].position, sizeof(double) * DIMENSIONS);
             bestFitness = f;
         }
     }
@@ -97,7 +101,7 @@ int main(int argc, char *argv[]) {
             }
             double f = fitness(p.position);
             if(f < fitness(p.bestPosition)) {
-                memcpy(p.bestPosition, p.position, sizeof(double) * DIMENSIONS);
+                memcpy2(p.bestPosition, p.position, sizeof(double) * DIMENSIONS);
                 bestFitness = f;
             }
         }
@@ -105,7 +109,7 @@ int main(int argc, char *argv[]) {
         for (int j = 0; j < SWARM_SIZE; ++j) {
             double f = fitness(particles[j].position);
             if(f < bestFitness) {
-                memcpy(bestSwarmPosition, particles[j].position, sizeof(double) * DIMENSIONS);
+                memcpy2(bestSwarmPosition, particles[j].position, sizeof(double) * DIMENSIONS);
                 bestFitness = f;
             }
         }
